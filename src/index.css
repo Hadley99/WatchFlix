@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+/* base styles */
+
+body {
+  background-color: #202020 !important;
+  color: white !important;
+  font-family: "roboto", sans-serif !important;
+}
+
+.logo-font {
+  font-family: "Allura", cursive;
+}
+.moviecard {
+  border-radius: 10px;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  border: solid 1px #343434;
+  background: #3434346e;
+}
+.moviecard:hover {
+  background-color: #c9c9c9;
+  color: #202020;
+}
+.custom-white {
+  background-color: #c9c9c9;
+}
+.custom-bg {
+  background: #202020 !important;
+}
+.nav-bg {
+  background-color: #181818;
+}
+.custom-border-top {
+  border: solid 1px #343434;
+}
+.cp {
+  cursor: pointer;
+}
+
+.active-tab {
+  background-color: #c9c9c9;
+  color: #202020;
+  cursor: pointer;
+}
+.active-tab:hover {
+  color: #202020;
+}
+
+.custom-muted {
+  color: #8b8b8b;
+}
+.elipsis {
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: bold;
+}
+.tab {
+  background-color: #302f2f;
+  color: #c9c9c9;
+  cursor: pointer;
+}
+.rc-pagination-item {
+  color: white !important;
+  background: none !important;
+  border: none !important;
+}
+
+.rc-pagination-prev,
+.rc-pagination-next {
+  color: white !important;
+  background: none !important;
+  border: none !important;
+}
+.rc-pagination-item-link {
+  color: #c9c9c9 !important;
+}
+.rc-pagination-disabled {
+  background-color: grey;
+}
+.rc-pagination-disabled:hover {
+  cursor: not-allowed !important;
+  background: transparent !important;
+}
+.rc-pagination-item-active {
+  background: white !important;
+  border-radius: 50px !important;
+  color: #202020 !important;
+}
+
+.rc-pagination-prev:hover,
+.rc-pagination-next:hover,
+.rc-pagination-item:hover {
+  background: #8080803b !important;
+  border-radius: 50px !important;
+}
+.backdrop {
+  position: absolute;
+  z-index: -1 !important;
+  width: 100%;
+  top: 45px !important;
+  left: 0px;
+  opacity: 10%;
+}
+
+/* scrollbar */
+.scroll {
+  overflow: auto;
+  color: grey;
+  transition: color 0.3s;
+}
+
+.scroll:hover {
+  color: #666666ff;
+}
+.scroll::-webkit-scrollbar {
+  width: 14px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  border: 4px solid transparent;
+  border-radius: 7px;
+  box-shadow: inset 0 0 0 10px;
+}
+.scroll::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.scroll::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+/* scrollbar */
