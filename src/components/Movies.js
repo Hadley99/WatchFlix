@@ -42,7 +42,6 @@ const Movies = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setMovies(data.results);
 
         setTotalResults(() =>
@@ -60,23 +59,6 @@ const Movies = () => {
     <div>
       <div>
         <h1 className="mb-md-4 mb-sm-2 mt-5 pt-3">Movies</h1>
-
-        <select
-          className="form-select"
-          id="movie-types"
-          value={fetchType}
-          onChange={(e) => {
-            const selectedType = e.target.value;
-            setFetchType(selectedType);
-            setPage(1);
-          }}
-        >
-          <option value="discover">Discover</option>
-          <option value="popular">Popular</option>
-          <option value="nowPlaying">Now Playing</option>
-          <option value="topRated">Top Rated</option>
-          <option value="upcoming">Upcoming</option>
-        </select>
       </div>
       <div>
         <Genres
@@ -88,6 +70,22 @@ const Movies = () => {
           setPage={setPage}
         />
       </div>
+      <select
+        className="badge mb-md-4 mb-3 text-white rounded pe-3 ps-0 custom-bg  "
+        id="movie-types"
+        value={fetchType}
+        onChange={(e) => {
+          const selectedType = e.target.value;
+          setFetchType(selectedType);
+          setPage(1);
+        }}
+      >
+        <option value="discover">Discover</option>
+        <option value="popular">Popular</option>
+        <option value="nowPlaying">Now Playing</option>
+        <option value="topRated">Top Rated</option>
+        <option value="upcoming">Upcoming</option>
+      </select>
       <div className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5">
         {movies.map((item) => (
           <DetailCard

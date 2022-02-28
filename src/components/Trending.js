@@ -21,7 +21,6 @@ const Trending = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setTrending(data.results);
 
         setTotalResults(() =>

@@ -30,8 +30,6 @@ const TvSeries = () => {
         setTotalResults(() =>
           data.total_pages > 500 ? 500 * 20 : data.total_pages
         );
-
-        // console.log(data.results);
       });
   };
 
