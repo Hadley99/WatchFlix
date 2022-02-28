@@ -53,7 +53,7 @@ const TvSeries = () => {
           setPage={setPage}
         />
       </div>
-      <div className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-5">
+      <div className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5">
         {series.map((item) => (
           <DetailCard
             key={item.id}
@@ -66,17 +66,21 @@ const TvSeries = () => {
           />
         ))}
       </div>
-      <Pagination
-        style={{}}
-        className="mb-5 pb-3 pb-md-4 justify-content-center text-dark d-flex"
-        prevIcon={"<"}
-        nextIcon={">"}
-        total={totalResults}
-        pageSize={series.length}
-        current={page}
-        onChange={changePage}
-        hideOnSinglePage
-      />
+      {!series.length ? (
+        ""
+      ) : (
+        <Pagination
+          style={{}}
+          className="mb-5 pb-3 pb-md-4  mt-5 justify-content-center text-dark d-flex"
+          prevIcon={"<"}
+          nextIcon={">"}
+          total={totalResults}
+          pageSize={series.length}
+          current={page}
+          onChange={changePage}
+          hideOnSinglePage
+        />
+      )}
     </div>
   );
 };

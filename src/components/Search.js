@@ -10,6 +10,7 @@ const Search = () => {
 
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(500);
+  const [notFound, setNotFound] = useState();
 
   const changePage = (p) => {
     setPage(p);
@@ -39,6 +40,7 @@ const Search = () => {
         setTotalResults(() =>
           data.total_pages > 500 ? 500 * 20 : data.total_pages
         );
+        setNotFound(data.total_results);
       });
   };
 
@@ -80,25 +82,28 @@ const Search = () => {
           toggleTab={toggleTab}
         />
 
-        <div className=" row row-cols-md-5 row-cols-sm-2 row-cols-2  gy-4 pb-5">
-          {result.map((item) => (
-            <DetailCard
-              key={item.id}
-              id={item.id}
-              title={item.title || item.name}
-              poster={item.poster_path}
-              type={toggleState === 0 ? "movie" : "tv"}
-              date={item.first_air_date || item.release_date}
-              vote={item.vote_average}
-            />
-          ))}
+        <div className=" row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5">
+          {notFound === 0 ? (
+            <div className="text-center w-100 mt-5">No Results Found</div>
+          ) : (
+            result.map((item) => (
+              <DetailCard
+                key={item.id}
+                id={item.id}
+                title={item.title || item.name}
+                poster={item.poster_path}
+                type={toggleState === 0 ? "movie" : "tv"}
+                date={item.first_air_date || item.release_date}
+                vote={item.vote_average}
+              />
+            ))
+          )}
         </div>
         {!result.length ? (
           ""
         ) : (
           <Pagination
-            style={{}}
-            className="mb-5 pb-3 pb-md-4 justify-content-center text-dark d-flex"
+            className="mb-5 pb-3 mt-5 pb-md-4 justify-content-center text-dark d-flex"
             prevIcon={"<"}
             nextIcon={">"}
             total={totalResults}

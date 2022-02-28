@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const BottomNavbar = () => {
@@ -7,6 +7,7 @@ const BottomNavbar = () => {
   const toggleTab = (index) => {
     setToggleState(index);
   };
+  useEffect(() => {}, []);
   return (
     <div className="nav-bg fixed-bottom custom-border-top">
       <div className="">
@@ -35,7 +36,9 @@ const BottomNavbar = () => {
                   ? "  d-flex pt-2  rounded text-center flex-column text-decoration-none  active-tab "
                   : "d-flex pt-2  text-center flex-column text-decoration-none text-white "
               }
-              onClick={() => toggleTab(1)}
+              onClick={() => {
+                toggleTab(1);
+              }}
             >
               <i className="fa-light px-2 fs-5 fa-clapperboard-play"></i>
               <p className="mt-1 px-sm-2 m-0" style={{ fontSize: "14px" }}>
@@ -51,7 +54,9 @@ const BottomNavbar = () => {
                   ? "  d-flex pt-2  rounded text-center flex-column text-decoration-none  active-tab "
                   : "d-flex pt-2  text-center flex-column text-decoration-none text-white "
               }
-              onClick={() => toggleTab(2)}
+              onClick={() => {
+                toggleTab(2);
+              }}
             >
               <i className="fa-light px-2 fs-5 fa-tv-retro"></i>
               <p
@@ -70,7 +75,9 @@ const BottomNavbar = () => {
                   ? "  d-flex pt-2  rounded text-center flex-column text-decoration-none  active-tab "
                   : "d-flex pt-2 text-center flex-column text-decoration-none text-white "
               }
-              onClick={() => toggleTab(3)}
+              onClick={() => {
+                toggleTab(3);
+              }}
             >
               <i className="fa-light px-2  fs-5 fa-magnifying-glass"></i>
               <p className="mt-1 px-sm-2  m-0" style={{ fontSize: "14px" }}>

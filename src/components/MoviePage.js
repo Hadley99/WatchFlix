@@ -112,12 +112,8 @@ const MoviePage = () => {
       </div>
       <div className="d-md-none d-block">
         <img
-          src={
-            data.poster_path
-              ? `${img_500}/${data.poster_path}`
-              : unavailableLandscape
-          }
-          className="backdrop fixed-top"
+          src={data.poster_path ? `${img_780}/${data.poster_path}` : ""}
+          className="backdrop fixed-top "
           alt=""
         />
       </div>
@@ -177,7 +173,7 @@ const MoviePage = () => {
                   spacing={2} //optional
                   fill="#ea9c46" //optional
                 />
-                <sup className="custom-muted">({data.vote_average})</sup>
+                <sup className="custom-muted">({data.vote_average / 2})</sup>
               </div>
               <div className="d-flex mb-3 mt-2  flex-wrap">
                 {data.genres &&
@@ -206,20 +202,20 @@ const MoviePage = () => {
               </div>
               {providers && (
                 <>
-                  <h6 className="mt-3 pt-2 mb-2 m-0 fs-5 fw-bold">
-                    Streaming on
-                  </h6>
-                  {providers.map((item) => (
-                    <div key={item.provider_id}>
-                      <img
-                        src={`${original}/${item.logo_path}`}
-                        alt={item.prodiver_name}
-                        width="50px"
-                        height="50px"
-                        className="rounded me-2"
-                      />
-                    </div>
-                  ))}
+                  <h6 className="mt-3 pt-2  m-0 fs-5 fw-bold">Streaming on</h6>
+                  <div className="d-flex flex-wrap">
+                    {providers.map((item) => (
+                      <div key={item.provider_id}>
+                        <img
+                          src={`${original}/${item.logo_path}`}
+                          alt={item.prodiver_name}
+                          width="50px"
+                          height="50px"
+                          className="rounded me-2 mt-2"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </>
               )}
             </div>

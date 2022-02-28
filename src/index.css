@@ -100,9 +100,10 @@ body {
   position: absolute;
   z-index: -1 !important;
   width: 100%;
-  top: 45px !important;
+  top: 42px !important;
   left: 0px;
   opacity: 10%;
+  /* height: 85vh; */
 }
 
 /* scrollbar */
@@ -133,3 +134,53 @@ body {
   background-color: transparent;
 }
 /* scrollbar */
+.loading-image {
+  padding: 74.3% 0;
+  background: #403f3f;
+}
+.loading-title {
+  background: #403f3f;
+  padding: 1.6vh 0;
+  margin-top: 0.7rem;
+}
+.loading-type {
+  background: #403f3f;
+  padding: 0.6rem 0;
+  width: 48%;
+  margin-top: 0.1rem;
+}
+.loading-year {
+  background: #403f3f;
+  padding: 0.6rem 0;
+  width: 32%;
+  margin-top: 0.1rem;
+}
+.loading-card {
+  border-radius: 10px;
+  border: solid 1px #343434;
+  background: #3434346e;
+}
+@keyframes shine {
+  0% {
+    background-position: -100vw;
+  }
+  100% {
+    background-position: 100vw;
+  }
+}
+.loading-year,
+.loading-type,
+.loading-type,
+.loading-title,
+.loading-image {
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(82 82 82) 50%,
+    transparent 100%
+  );
+
+  background-repeat: no-repeat;
+  background-position: -100vw;
+  animation: shine 2s infinite;
+}
