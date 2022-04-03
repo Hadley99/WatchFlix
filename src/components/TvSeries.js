@@ -1,6 +1,6 @@
 import Pagination from "rc-pagination";
 import { useEffect, useState } from "react";
-
+import { motion } from "framer-motion";
 import Genres from "./Genres";
 import useGenre from "./hooks/useGenre";
 import DetailCard from "./SingleComponents/DetailCard";
@@ -51,7 +51,10 @@ const TvSeries = () => {
           setPage={setPage}
         />
       </div>
-      <div className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5">
+      <motion.div
+        layout
+        className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5"
+      >
         {series.map((item) => (
           <DetailCard
             key={item.id}
@@ -63,7 +66,7 @@ const TvSeries = () => {
             vote={item.vote_average}
           />
         ))}
-      </div>
+      </motion.div>
       {!series.length ? (
         ""
       ) : (

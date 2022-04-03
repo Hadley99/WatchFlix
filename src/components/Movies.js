@@ -4,7 +4,7 @@ import DetailCard from "./SingleComponents/DetailCard";
 import useGenre from "./hooks/useGenre";
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
-
+import { motion } from "framer-motion";
 const Movies = () => {
   const changePage = (p) => {
     window.scroll(0, 0);
@@ -86,7 +86,10 @@ const Movies = () => {
         <option value="topRated">Top Rated</option>
         <option value="upcoming">Upcoming</option>
       </select>
-      <div className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5">
+      <motion.div
+        layout
+        className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5"
+      >
         {movies.map((item) => (
           <DetailCard
             key={item.id}
@@ -100,7 +103,7 @@ const Movies = () => {
             vote={item.vote_average}
           />
         ))}
-      </div>
+      </motion.div>
       {!movies.length ? (
         ""
       ) : (

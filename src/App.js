@@ -17,10 +17,11 @@ function App() {
           <div className="container">
             <Routes>
               <Route exact path="/" element={<Trending />} />
-              <Route path="/movies" element={<Movies />} />
-              <Route path="/series" element={<TvSeries />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/:type/:id" element={<MoviePage />} />
+              <Route exact path="/movies" element={<Movies />} />
+              <Route exact path="/series" element={<TvSeries />} />
+              <Route exact path="/search" element={<Search />} />
+              <Route exact path="*" element={<Trending />} />
+              <Route exact path="/:type/:id" element={<MoviePage />} />
             </Routes>
           </div>
         </div>
