@@ -12,15 +12,6 @@ const Search = () => {
   const [totalResults, setTotalResults] = useState(500);
   const [notFound, setNotFound] = useState();
 
-  const changePage = (p) => {
-    setPage(p);
-    window.scroll(0, 0);
-  };
-
-  const toggleTab = (index) => {
-    setToggleState(index);
-    setPage(1);
-  };
   const fetchSearch = () => {
     if (!searchText) {
       return;
@@ -43,27 +34,58 @@ const Search = () => {
         setNotFound(data.total_results);
       });
   };
+  const debounce = (cb, delay = 300) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        fetchSearch();
+        cb(...args);
+      }, delay);
+    };
+  };
+
+  const updateDebounce = debounce((text) => {
+    setSearchText(text);
+  }, 300);
+  const changePage = (p) => {
+    setPage(p);
+    window.scroll(0, 0);
+  };
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+    setPage(1);
+  };
 
   useEffect(() => {
     fetchSearch();
     // eslint-disable-next-line
-  }, [page, toggleState]);
+  }, [page, toggleState, searchText]);
 
   return (
     <div>
       <div>
         <h1 className="mb-md-4 mb-sm-2 mt-5  pt-3">Search</h1>
       </div>
-      <form action="">
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className="row g-0">
-          <div className="col-md-10 col-8 ">
+          <div className="col ">
             <input
               type="text"
               className=" form-control custom-bg  text-white"
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => {
+                updateDebounce(e.target.value);
+                //setSearchText(e.target.value);
+              }}
             />
           </div>
-          <div className="col-md-2 col-4 ps-md-3 ps-0">
+          {/* <div className="col-md-2 col-4 ps-md-3 ps-0">
             <button
               className="form-control px-3 ms-1 ms-md-0 btn btn-light "
               onClick={(e) => {
@@ -73,7 +95,7 @@ const Search = () => {
             >
               Search
             </button>
-          </div>
+          </div> */}
         </div>
         <Tabs
           toggleState={toggleState}

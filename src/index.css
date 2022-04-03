@@ -184,3 +184,7 @@ body {
   background-position: -100vw;
   animation: shine 2s infinite;
 }
+input:focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 25%) !important;
+}
