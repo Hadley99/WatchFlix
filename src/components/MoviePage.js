@@ -258,7 +258,7 @@ const MoviePage = () => {
         <div className="pb-3">
           <h5 className="mt-4 fs-3">Similar</h5>
 
-          <div className=" flex-nowrap  scroll   g-3 row  row-cols-md-6 row-cols-2 mb-5 ">
+          <div className=" flex-nowrap  scroll overflow-y-hidden  g-3 row  row-cols-md-6 row-cols-2 mb-5 ">
             {similar &&
               similar.map((item) => (
                 <DetailCard

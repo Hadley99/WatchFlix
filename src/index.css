@@ -39,14 +39,14 @@ body {
   cursor: pointer;
 }
 
-.active-tab {
+/* .active-tab {
   background-color: #c9c9c9;
   color: #202020;
   cursor: pointer;
 }
 .active-tab:hover {
   color: #202020;
-}
+} */
 
 .custom-muted {
   color: #8b8b8b;
@@ -105,7 +105,9 @@ body {
   opacity: 10%;
   /* height: 85vh; */
 }
-
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
 /* scrollbar */
 .scroll {
   overflow: auto;
