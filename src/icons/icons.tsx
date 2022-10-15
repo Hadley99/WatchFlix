@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface SVG extends React.SVGProps<SVGSVGElement> {
-  size: number;
+  size: string;
   xlink?: string;
 }
 
