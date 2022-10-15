@@ -1,20 +1,19 @@
-import * as React from "react";
 import Pagination from "rc-pagination";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Genres from "./Genres";
 import useGenre from "./hooks/useGenre";
-import DetailCard from "./common/detailCard/DetailCard";
-import MovieResult, { Genre } from "../interfaces/MovieResult";
+import DetailCard from "./SingleComponents/DetailCard";
 
 const TvSeries = () => {
-  const [series, setSeries] = useState<Array<MovieResult>>([]);
-  const [selectedGenres, setSelectedGenres] = useState<Array<Genre>>([]);
-  const [genres, setGenres] = useState<Array<Genre>>([]);
+  const [series, setSeries] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [genres, setGenres] = useState([]);
   const genresForUrl = useGenre(selectedGenres);
+
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(500);
-  const changePage = (p: number) => {
+  const changePage = (p) => {
     window.scroll(0, 0);
     setPage(p);
   };
@@ -56,7 +55,7 @@ const TvSeries = () => {
         layout
         className="row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5"
       >
-        {series?.map((item) => (
+        {series.map((item) => (
           <DetailCard
             key={item.id}
             id={item.id}
@@ -64,6 +63,7 @@ const TvSeries = () => {
             poster={item.poster_path}
             type={"tv"}
             date={item.first_air_date || item.release_date}
+            vote={item.vote_average}
           />
         ))}
       </motion.div>
@@ -71,6 +71,7 @@ const TvSeries = () => {
         ""
       ) : (
         <Pagination
+          style={{}}
           className="mb-5 pb-3 pb-md-4  mt-5 justify-content-center text-dark d-flex"
           prevIcon={"<"}
           nextIcon={">"}

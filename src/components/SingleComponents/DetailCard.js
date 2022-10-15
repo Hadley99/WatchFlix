@@ -1,16 +1,8 @@
-import * as React from "react";
 import { Link } from "react-router-dom";
-import { img_300, unavailable } from "../../config/config";
+import { img_300, unavailable } from "../config/config";
 import { motion } from "framer-motion";
-interface Props {
-  id: number;
-  poster: string;
-  title?: string;
-  type?: string;
-  date?: string;
-  onClick?: () => void;
-}
-const DetailCard = ({ id, poster, title, type, date }: Props) => {
+
+const DetailCard = ({ id, poster, title, type, date, vote }) => {
   return (
     <motion.div layout>
       <Link to={`/${type}/${id}`} className={"text-decoration-none text-white"}>
