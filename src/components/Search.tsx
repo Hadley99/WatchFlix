@@ -1,24 +1,24 @@
+import * as React from "react";
 import Pagination from "rc-pagination";
 import { useEffect, useState } from "react";
-import DetailCard from "./SingleComponents/DetailCard";
-import Tabs from "./SingleComponents/Tabs";
+import DetailCard from "./common/detailCard/DetailCard";
+import Tabs from "./common/tabs/Tabs";
+import { MovieResult } from "../interfaces";
 
 const Search = () => {
-  const [searchText, setSearchText] = useState();
-  const [result, setResult] = useState([]);
-  const [toggleState, setToggleState] = useState(0);
+  const [searchText, setSearchText] = useState<string>("");
+  const [result, setResult] = useState<Array<MovieResult>>();
+  const [tab, setTab] = useState(0);
 
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(500);
   const [notFound, setNotFound] = useState();
 
   const fetchSearch = () => {
-    if (!searchText) {
-      return;
-    }
+    if (!searchText) return;
     fetch(
       `https://api.themoviedb.org/3/search/${
-        toggleState === 1 ? "tv" : "movie"
+        tab === 1 ? "tv" : "movie"
       }?api_key=${
         process.env.REACT_APP_MY_KEY
       }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
@@ -34,34 +34,39 @@ const Search = () => {
         setNotFound(data.total_results);
       });
   };
-  const debounce = (cb, delay = 300) => {
-    let timeout;
-    return (...args) => {
+
+  const debounce: (
+    cb: (text: string) => void,
+    delay?: number
+  ) => (text: string) => void = (cb, delay = 300) => {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (text: string) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         fetchSearch();
-        cb(...args);
+        cb(text);
       }, delay);
     };
   };
 
-  const updateDebounce = debounce((text) => {
+  const updateDebounce: (query: string) => void = debounce((text: string) => {
     setSearchText(text);
   }, 300);
-  const changePage = (p) => {
+
+  const changePage = (p: number) => {
     setPage(p);
     window.scroll(0, 0);
   };
 
-  const toggleTab = (index) => {
-    setToggleState(index);
+  const toggleTab = (index: number) => {
+    setTab(index);
     setPage(1);
   };
 
   useEffect(() => {
     fetchSearch();
     // eslint-disable-next-line
-  }, [page, toggleState, searchText]);
+  }, [page, tab, searchText]);
 
   return (
     <div>
@@ -97,39 +102,31 @@ const Search = () => {
             </button>
           </div> */}
         </div>
-        <Tabs
-          toggleState={toggleState}
-          setToggleState={setToggleState}
-          setPage={setPage}
-          toggleTab={toggleTab}
-        />
+        <Tabs {...{ tab, toggleTab }} />
 
         <div className=" row row-cols-md-5 row-cols-sm-2 row-cols-2 gy-4 pb-3 mb-5 mb-md-3  pb-md-5">
           {notFound === 0 ? (
             <div className="text-center w-100 mt-5">No Results Found</div>
           ) : (
-            result.map((item) => (
+            result?.map((item) => (
               <DetailCard
                 key={item.id}
                 id={item.id}
                 title={item.title || item.name}
                 poster={item.poster_path}
-                type={toggleState === 0 ? "movie" : "tv"}
+                type={tab === 0 ? "movie" : "tv"}
                 date={item.first_air_date || item.release_date}
-                vote={item.vote_average}
               />
             ))
           )}
         </div>
-        {!result.length ? (
-          ""
-        ) : (
+        {result?.length && (
           <Pagination
             className="mb-5 pb-3 mt-5 pb-md-4 justify-content-center text-dark d-flex"
             prevIcon={"<"}
             nextIcon={">"}
             total={totalResults}
-            pageSize={result.length}
+            pageSize={result?.length}
             current={page}
             onChange={changePage}
             hideOnSinglePage
