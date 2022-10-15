@@ -1,27 +1,22 @@
-import * as React from "react";
-
-interface SVG extends React.SVGProps<SVGSVGElement> {
-  size: number;
-  xlink?: string;
+export function FireFill(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xlink="http://www.w3.org/1999/xlink"
+      width={props.size}
+      height={props.size}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14c1 0 2.5 0 5-2.47c.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z"
+      ></path>
+    </svg>
+  );
 }
 
-export const FireFill = (props: SVG) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
-    width={props?.size}
-    height={props?.size}
-    viewBox="0 0 24 24"
-    {...props}
-  >
-    <path
-      fill="currentColor"
-      d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14c1 0 2.5 0 5-2.47c.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z"
-    ></path>
-  </svg>
-);
-
-export const FireNoFill = (props: SVG) => {
+export function FireNoFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -37,9 +32,9 @@ export const FireNoFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
 
-export const MoviesNoFill = (props: SVG) => {
+export function MoviesNoFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +50,9 @@ export const MoviesNoFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
 
-export const MoviesFill = (props: SVG) => {
+export function MoviesFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -73,9 +68,9 @@ export const MoviesFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
 
-export const TvNoFill = (props: SVG) => {
+export function TvNoFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -91,9 +86,9 @@ export const TvNoFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
 
-export const TvFill = (props: SVG) => {
+export function TvFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -109,9 +104,9 @@ export const TvFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
 
-export const SearchNoFill = (props: SVG) => {
+export function SearchNoFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -127,9 +122,9 @@ export const SearchNoFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
 
-export const SearchFill = (props: SVG) => {
+export function SearchFill(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -145,4 +140,4 @@ export const SearchFill = (props: SVG) => {
       ></path>
     </svg>
   );
-};
+}
