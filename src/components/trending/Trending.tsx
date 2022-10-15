@@ -1,13 +1,15 @@
+import * as React from "react";
 import Pagination from "rc-pagination";
 import { useState, useEffect } from "react";
-import DetailCard from "./SingleComponents/DetailCard";
+import DetailCard from "../common/detailCard/DetailCard";
+import { MovieResult } from "../../interfaces";
 
-const Trending = () => {
-  const [trending, setTrending] = useState([]);
-  const [loading, setLoading] = useState(0);
-  const [page, setPage] = useState(1);
+const Trending: React.FC = () => {
+  const [trending, setTrending] = useState<Array<MovieResult>>([]);
+  const [page, setPage] = useState<number>(1);
   const [totalResults, setTotalResults] = useState(500);
-  const changePage = (p) => {
+
+  const changePage = (p: number) => {
     setPage(p);
     window.scroll(0, 0);
   };
@@ -17,7 +19,6 @@ const Trending = () => {
       `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_MY_KEY}&page=${page}`
     )
       .then((res) => {
-        res ? setLoading(1) : setLoading(0);
         return res.json();
       })
       .then((data) => {
@@ -49,7 +50,6 @@ const Trending = () => {
               poster={item.poster_path}
               type={item.media_type}
               date={item.first_air_date || item.release_date}
-              vote={item.vote_average}
             />
           ))}
         </div>

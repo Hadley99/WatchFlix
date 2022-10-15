@@ -1,26 +1,29 @@
+import * as React from "react";
 import { useState, useEffect } from "react";
 import Genres from "./Genres";
-import DetailCard from "./SingleComponents/DetailCard";
+import DetailCard from "./common/detailCard/DetailCard";
 import useGenre from "./hooks/useGenre";
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import { motion } from "framer-motion";
+import { MovieResult } from "../interfaces";
+import { Genre } from "../interfaces/MovieResult";
+
 const Movies = () => {
-  const changePage = (p) => {
+  const [movies, setMovies] = useState<Array<MovieResult>>([]);
+  const [selectedGenres, setSelectedGenres] = useState<Array<Genre>>([]);
+  const [genres, setGenres] = useState<Array<Genre>>([]);
+  const genresForUrl: string | number = useGenre(selectedGenres);
+  const [page, setPage] = useState<number>(1);
+  const [totalResults, setTotalResults] = useState(500);
+  const [fetchType, setFetchType] = useState("discover");
+
+  const changePage = (p: number) => {
     window.scroll(0, 0);
     setPage(p);
   };
 
-  const [selectedGenres, setSelectedGenres] = useState([]);
-  const [genres, setGenres] = useState([]);
-  const genresForUrl = useGenre(selectedGenres);
-
-  const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalResults, setTotalResults] = useState(500);
-
-  const [fetchType, setFetchType] = useState("discover");
-  const getFetchType = () => {
+  const getFetchType = (): string => {
     switch (fetchType) {
       case "discover":
         return `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MY_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genresForUrl}`;
@@ -33,7 +36,7 @@ const Movies = () => {
       case "topRated":
         return `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MY_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genresForUrl}`;
       default:
-        return;
+        return "";
     }
   };
   const fetchMovies = () => {
@@ -100,7 +103,6 @@ const Movies = () => {
             date={
               item.first_air_date?.slice(0.4) || item.release_date?.slice(0, 4)
             }
-            vote={item.vote_average}
           />
         ))}
       </motion.div>
@@ -108,7 +110,6 @@ const Movies = () => {
         ""
       ) : (
         <Pagination
-          style={{}}
           className="mb-5 pb-3  mt-5 pb-md-4 justify-content-center text-dark d-flex"
           prevIcon={"<"}
           nextIcon={">"}
