@@ -33,7 +33,6 @@ const MoviePage = () => {
         return res.json();
       })
       .then((data) => {
-        console.log({ mainData: data });
         setData(data);
       });
   };
@@ -52,7 +51,7 @@ const MoviePage = () => {
         }
       });
   };
-  console.log(providers);
+
   const fetchSimilar = () => {
     fetch(
       `https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${process.env.REACT_APP_MY_KEY}&language=en-US&page=${page}`
@@ -73,7 +72,6 @@ const MoviePage = () => {
         return res.json();
       })
       .then((data) => {
-        console.log({ data });
         setCredits(data);
       });
   };
